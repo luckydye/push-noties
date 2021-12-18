@@ -60,6 +60,7 @@ function enablePushNotificatins() {
         });
       });
   }).then(function (subscription) {
+    console.log('sub', subscription);
     // Send the subscription details to the server using the Fetch API.
     fetch(api_path + 'register', {
       method: 'post',

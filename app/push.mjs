@@ -60,6 +60,7 @@ export default {
 
         app.post(route + 'register', function (req, res) {
             const subscription = req.body.subscription;
+            console.log('new sub', subscription);
             subscription_manager.add_sub(subscription);
 
             res.sendStatus(201);
