@@ -5,11 +5,15 @@ self.addEventListener('install', function (event) {
 // Register event listener for the 'push' event.
 self.addEventListener('push', function (event) {
     console.log("Push event", event);
+
+    const payload = event.data ? event.data.text() : 'no payload';
+
     // Keep the service worker alive until the notification is created.
     event.waitUntil(
-        // Show a notification with title 'ServiceWorker Cookbook' and body 'Alea iacta est'.
+        // Show a notification with title 'ServiceWorker Cookbook' and use the payload
+        // as the body.
         self.registration.showNotification('ServiceWorker Cookbook', {
-            body: 'Alea iacta est',
+            body: payload,
         }).then(d => {
             console.log("shown nitification", d);
         }).catch(err => {
@@ -17,3 +21,4 @@ self.addEventListener('push', function (event) {
         })
     );
 });
+

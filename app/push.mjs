@@ -38,8 +38,6 @@ async function sendNotification(body = {
         TTL: body.ttl
     };
 
-    console.log(subscription);
-
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             webPush.sendNotification(subscription, payload, options)
@@ -70,16 +68,12 @@ export default {
     },
 
     async sendNotificationToAll(body) {
-        const payload = ((new TextEncoder()).encode(body.text)).buffer;
-
-        console.log(payload);
-
         for (let sub of subscription_manager.all()) {
             await sendNotification({
                 subscription: sub,
                 delay: 0,
                 ttl: 1,
-                payload: Buffer.from(payload),
+                payload: "Testing" + body.text,
             }).then((e) => {
                 Console.log("Sent succenssful", e);
             }).catch(err => {
