@@ -22,11 +22,11 @@ export default {
         rl.prompt();
 
         rl.on('line', async (line) => {
+            this.clear();
             const args = line.split(" ");
             if(args[0] != "") {
                 await callback(args);
             }
-            rl.prompt();
         });
     },
     reset() {
