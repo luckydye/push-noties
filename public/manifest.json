@@ -1,0 +1,8 @@
+{
+  "name": "push-noties",
+  "short_name": "push-noties",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#333",
+  "description": "Push Notifications prototype."
+}
