@@ -10,6 +10,10 @@ self.addEventListener('push', function (event) {
         // Show a notification with title 'ServiceWorker Cookbook' and body 'Alea iacta est'.
         self.registration.showNotification('ServiceWorker Cookbook', {
             body: 'Alea iacta est',
+        }).then(d => {
+            console.log("shown nitification", d);
+        }).catch(err => {
+            console.error(err);
         })
     );
 });

@@ -25,7 +25,7 @@ return /******/ (() => { // webpackBootstrap
   \***************************************/
 /***/ (() => {
 
-eval("self.addEventListener('install', function (event) {// Perform install steps\n}); // Register event listener for the 'push' event.\n\nself.addEventListener('push', function (event) {\n  console.log(\"Push event\", event); // Keep the service worker alive until the notification is created.\n\n  event.waitUntil( // Show a notification with title 'ServiceWorker Cookbook' and body 'Alea iacta est'.\n  self.registration.showNotification('ServiceWorker Cookbook', {\n    body: 'Alea iacta est'\n  }));\n});\n\n//# sourceURL=webpack:///./client/push.service-worker.js?");
+eval("self.addEventListener('install', function (event) {// Perform install steps\n}); // Register event listener for the 'push' event.\n\nself.addEventListener('push', function (event) {\n  console.log(\"Push event\", event); // Keep the service worker alive until the notification is created.\n\n  event.waitUntil( // Show a notification with title 'ServiceWorker Cookbook' and body 'Alea iacta est'.\n  self.registration.showNotification('ServiceWorker Cookbook', {\n    body: 'Alea iacta est'\n  }).then(d => {\n    console.log(\"shown nitification\", d);\n  }).catch(err => {\n    console.error(err);\n  }));\n});\n\n//# sourceURL=webpack:///./client/push.service-worker.js?");
 
 /***/ })
 

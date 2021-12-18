@@ -38,6 +38,8 @@ async function sendNotification(body = {
         TTL: body.ttl
     };
 
+    console.log(subscription);
+
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             webPush.sendNotification(subscription, payload, options)
