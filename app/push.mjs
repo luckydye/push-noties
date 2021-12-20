@@ -24,6 +24,8 @@ webPush.setVapidDetails(
     VAPID_PRIVATE_KEY,
 );
 
+webPush.setGCMAPIKey(env.gcmKey);
+
 const subscription_manager = new SubscriptionManager();
 
 async function sendNotification(body = {
