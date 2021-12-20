@@ -33,14 +33,49 @@ if ('serviceWorker' in navigator) {
   }, 1000 * 2);
 }
 
-function enablePushNotificatins() {
-  const api_path = "/api/push/";
+async function enablePushNotificatins() {
+  console.log("requesting permission");
 
   if (window.Notification.permission !== "granted") {
-    Notification.requestPermission();
+    const res = await Notification.requestPermission();
+    if (res !== "granted") {
+      console.log("notification permission denied");
+      return;
+    }
   }
 
-  navigator.serviceWorker.ready.then(function (registration) {
+  console.log("permission granted");
+  testNotification();
+
+  if(isSafari()) {
+    subscribeToPushSafari();
+  } else {
+    subscribeToPush();
+  }
+}
+
+function testNotification() {
+  new Notification("Lokal Test Notification", {
+    icon: "/icon/icon-192x192.png",
+  });
+}
+
+function isSafari() {
+  return !navigator.userAgent.match("Chrome/");
+}
+
+async function subscribeToPushSafari() {
+  console.log("subscribing to safari push");
+
+  
+}
+
+async function subscribeToPush() {
+  console.log("subscribing to push");
+
+  const api_path = "/api/push/";
+
+  return navigator.serviceWorker.ready.then(function (registration) {
     // Use the PushManager to get the user's subscription to the push service.
 
     return registration.pushManager.getSubscription()

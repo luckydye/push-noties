@@ -26,14 +26,16 @@ No way to support this in ios devices, only macos is possible at the moment.
 
 ## Working on
 
-- Chrome on MacOS ❌
+- Chrome(Canary) on MacOS ✅
 - Firefox on MacOS ✅
-- Safari on MacOS ❌
+- Safari on MacOS ❔ (APNS nesecery, no clue how to apple)
 
 - Chrome on Windows ✅
-- Firefox on Windows ❔
+- Firefox on Windows ✅
 - Edge on Windows ✅
 
 - Chrome on Android ✅
 
 - IPad / IPhone (IOS) ❌
+
+Check ```chrome://gcm-internals/``` on chrome if something is not working.
