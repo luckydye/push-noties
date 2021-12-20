@@ -12,10 +12,11 @@ self.addEventListener('push', function (event) {
     event.waitUntil(
         // Show a notification with title 'ServiceWorker Cookbook' and use the payload
         // as the body.
-        self.registration.showNotification('ServiceWorker Cookbook', {
+        self.registration.showNotification('Testing Push Notifications', {
             body: payload,
+            icon: "/icon/icon-192x192.png",
         }).then(d => {
-            console.log("shown nitification", d);
+            console.log("nitification shown");
         }).catch(err => {
             console.error(err);
         })

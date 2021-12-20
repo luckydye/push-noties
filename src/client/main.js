@@ -30,7 +30,7 @@ if ('serviceWorker' in navigator) {
 
   setTimeout(() => {
     enablePushNotificatins();
-  }, 1000 * 3);
+  }, 1000 * 2);
 }
 
 function enablePushNotificatins() {
@@ -38,10 +38,12 @@ function enablePushNotificatins() {
 
   navigator.serviceWorker.ready.then(function (registration) {
     // Use the PushManager to get the user's subscription to the push service.
+
     return registration.pushManager.getSubscription()
       .then(async function (subscription) {
         // If a subscription was found, return it.
         if (subscription) {
+          console.log("already subscribed");
           return subscription;
         }
 

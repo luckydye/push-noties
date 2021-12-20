@@ -20,8 +20,8 @@ if (!VAPID_PRIVATE_KEY || !VAPID_PUBLIC_KEY) {
 // Set the keys used for encrypting the push messages.
 webPush.setVapidDetails(
     'https://example.com/',
+    VAPID_PUBLIC_KEY,
     VAPID_PRIVATE_KEY,
-    VAPID_PUBLIC_KEY
 );
 
 const subscription_manager = new SubscriptionManager();
@@ -55,7 +55,7 @@ export default {
 
     init(app, route) {
         app.get(route + 'vapidPublicKey', function (req, res) {
-            res.send(VAPID_PRIVATE_KEY);
+            res.send(VAPID_PUBLIC_KEY);
         });
 
         app.post(route + 'register', function (req, res) {
