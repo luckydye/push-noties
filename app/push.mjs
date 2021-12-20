@@ -19,7 +19,7 @@ if (!VAPID_PRIVATE_KEY || !VAPID_PUBLIC_KEY) {
 }
 // Set the keys used for encrypting the push messages.
 webPush.setVapidDetails(
-    'https://example.com/',
+    'mailto:example@gmail.com',
     VAPID_PUBLIC_KEY,
     VAPID_PRIVATE_KEY,
 );

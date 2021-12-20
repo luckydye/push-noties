@@ -36,6 +36,10 @@ if ('serviceWorker' in navigator) {
 function enablePushNotificatins() {
   const api_path = "/api/push/";
 
+  if (window.Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
+
   navigator.serviceWorker.ready.then(function (registration) {
     // Use the PushManager to get the user's subscription to the push service.
 

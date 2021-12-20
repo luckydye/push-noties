@@ -23,3 +23,17 @@ Subscribe to a specific thing - like a news feed.
 
 No way to support this in ios devices, only macos is possible at the moment.
 
+
+## Working on
+
+- Chrome on MacOS ❌
+- Firefox on MacOS ✅
+- Safari on MacOS ❌
+
+- Chrome on Windows ✅
+- Firefox on Windows ❔
+- Edge on Windows ✅
+
+- Chrome on Android ✅
+
+- IPad / IPhone (IOS) ❌
