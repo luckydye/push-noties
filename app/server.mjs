@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use((req, res) => {
   res.header({
-    'Access-Control-Allow-Origin': "http://localhost:3000/",
+    'Access-Control-Allow-Origin': "http://localhost:3000",
     'Access-Control-Allow-Headers': "Content-Type"
   });
   req.next();
