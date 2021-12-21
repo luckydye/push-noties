@@ -50,7 +50,10 @@ async function enablePushNotificatins() {
   if(isSafari()) {
     subscribeToPushSafari();
   } else {
-    subscribeToPush();
+    const api_path_service1 = "/api/push/";
+    const api_path_service2 = "https://dev.luckydye.de/api/push/";
+
+    subscribeToPush(api_path_service2);
   }
 }
 
@@ -70,10 +73,8 @@ async function subscribeToPushSafari() {
   
 }
 
-async function subscribeToPush() {
+async function subscribeToPush(api_path) {
   console.log("subscribing to push");
-
-  const api_path = "/api/push/";
 
   return navigator.serviceWorker.ready.then(function (registration) {
     // Use the PushManager to get the user's subscription to the push service.
