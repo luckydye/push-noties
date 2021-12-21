@@ -45,15 +45,15 @@ async function enablePushNotificatins() {
   }
 
   console.log("permission granted");
-  testNotification();
 
   if(isSafari()) {
+    testNotification();
     subscribeToPushSafari();
   } else {
     const api_path_service1 = "/api/push/";
     const api_path_service2 = "https://dev.luckydye.de/api/push/";
 
-    subscribeToPush(api_path_service2);
+    subscribeToPush(api_path_service1);
   }
 }
 
