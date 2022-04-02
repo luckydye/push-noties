@@ -39,8 +39,7 @@ jobs:
       - name: Sync
         run: |
           mkdir ~/.ssh
-          echo ${{ secrets.STAGE_PRIVATE_KEY }} > ~/.ssh/id_rsa
-          cat ~/.ssh/id_rsa
+          echo "${{ secrets.STAGE_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ls -l ~/.ssh
           ssh -p 222 github@stage.luckydye.de ls -l /srv/apps
           cd $GITHUB_WORKSPACE
