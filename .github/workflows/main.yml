@@ -36,7 +36,8 @@ jobs:
         env:
           PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
         run: |
-          mkdir -p ~/.ssh
+          which ssh-agent || ( apk add --update openssh )
+          eval $(ssh-agent -s)
           echo "${PRIVAET_KEY}" | ssh-add -
           chmod 700 -R ~/.ssh
           ls -l ~/.ssh          
