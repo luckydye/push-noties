@@ -47,6 +47,6 @@ jobs:
           echo "SSH SUCCESS"
           npm ci
           npm run build
-          rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude={'.git/*', '.github/*', 'README.md'} . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
+          rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude={'../.git/*', '../.github/*', '../README.md'} . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST pm2 start $APP_ENTRYPOINT --port $APP_PORT --name $APP_NAME
