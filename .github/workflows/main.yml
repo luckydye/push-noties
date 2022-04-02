@@ -5,12 +5,12 @@ name: CI
 env:
   APP_PORT: 3000
   APP_NAME: "push-noties"
-  APP_ENTRYPOINT: "."
+  APP_DIRECTORY: /srv/apps
+  APP_ENTRYPOINT: /srv/apps/push-noties
   PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
   STAGE_HOST: stage.luckydye.de
   STAGE_USER: github
   STAGE_SSH_PORT: 222
-  APP_DIRECTORY: /srv/apps
 
 # Controls when the workflow will run
 on:
