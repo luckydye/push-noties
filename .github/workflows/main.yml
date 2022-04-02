@@ -6,7 +6,6 @@ env:
   APP_PORT: 3000
   APP_NAME: push-noties
   APP_DIRECTORY: /srv/apps
-  APP_ENTRYPOINT: npm start
   PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
   STAGE_HOST: stage.luckydye.de
   STAGE_USER: github
@@ -52,4 +51,4 @@ jobs:
           rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude '.git/*' --exclude '.github/*' . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "pm2 delete $APP_NAME || true"
-          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "cd $APP_DIRECTORY/$APP_NAME; PORT=$APP_PORT pm2 start $APP_ENTRYPOINT --name $APP_NAME"
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "cd $APP_DIRECTORY/$APP_NAME; PORT=$APP_PORT pm2 start 'npm start' --name $APP_NAME"
