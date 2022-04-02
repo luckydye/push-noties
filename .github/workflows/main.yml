@@ -41,6 +41,7 @@ jobs:
           which ssh-agent || ( apk add --update openssh )
           eval $(ssh-agent -s)
           echo "${PRIVAET_KEY}" | ssh-add -
+          mkdir ~/.ssh
           ssh-keyscan -H $STAGE_HOST >> ~/.ssh/known_hosts
           ssh -v -p $STAGE_SSH_PORT $STAGE_HOST ls -l /srv/apps
           echo "SSH SUCCESS"
