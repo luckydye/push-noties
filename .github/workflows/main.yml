@@ -40,7 +40,7 @@ jobs:
           mkdir -p ~/.ssh
           echo $PRIVAET_KEY > ~/.ssh/id_rsa
           ls -l ~/.ssh
-          chmod 600 -R ~/.ssh
+          chmod 770 -R ~/.ssh
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H 'github@stage.luckydye.de' >> ~/.ssh/known_hosts
