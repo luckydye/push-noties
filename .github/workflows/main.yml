@@ -53,7 +53,7 @@ jobs:
           chmod 700 ~/.ssh
           ls -l ~/.ssh
           cat ~/.ssh/known_hosts
-          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l /srv/apps
+          ssh -p 222 github@stage.luckydye.de ls -l /srv/apps
           rsync -ranv -e 'ssh -p 222' --progress . github@stage.luckydye.de:/srv/apps/$APP_NAME
           ssh -p 222 github@stage.luckydye.de ls -l /srv/apps/$APP_NAME
           ssh -p 222 github@stage.luckydye.de pm2 start $APP_ENTRYPOINT --port $APP_PORT --name $APP_NAME
