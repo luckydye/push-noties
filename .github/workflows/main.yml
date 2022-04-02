@@ -33,12 +33,16 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: setup ssh
+        env:
+          $PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
+          $PUBLIC_KEY: ${{ secrets.STAGE_PUBLIC_KEY }}
         run: |
           mkdir ~/.ssh
-          echo "${{ secrets.STAGE_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.STAGE_PUBLIC_KEY }}" > ~/.ssh/known_hosts
+          echo $PRIVAET_KEY > ~/.ssh/id_rsa
+          echo $PUBLIC_KEY > ~/.ssh/known_hosts
           chmod 700 -R ~/.ssh
           ls -l ~/.ssh
+          cat ~/.ssh/known_hosts
           ssh -v -i ~/.ssh/id_rsa -p 222 github@stage.luckydye.de ls -l /srv/apps
 
       # Runs a set of commands using the runners shell
