@@ -39,10 +39,7 @@ jobs:
           which ssh-agent || ( apk add --update openssh )
           eval $(ssh-agent -s)
           echo "${PRIVAET_KEY}" | ssh-add -
-          chmod 700 -R ~/.ssh
-          ls -l ~/.ssh          
-          eval "$(ssh-agent -s)"          
-          ssh-add ~/.ssh/id_rsa
+          ls -l ~/.ssh
           ssh-keyscan -H 'github@stage.luckydye.de' >> ~/.ssh/known_hosts
           ssh -v -i ~/.ssh/id_rsa -p 222 github@stage.luckydye.de ls -l /srv/apps
           echo "SSH SUCCESS"
