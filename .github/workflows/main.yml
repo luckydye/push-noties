@@ -44,13 +44,13 @@ jobs:
           echo "${PRIVAET_KEY}" | ssh-add -
           mkdir ~/.ssh
           ssh-keyscan -p $STAGE_SSH_PORT -H $STAGE_HOST >> ~/.ssh/known_hosts
-          ssh -v -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l /srv/apps
-          echo "SSH SUCCESS"
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l /srv/apps
 
       # Runs a set of commands using the runners shell
       - name: deploy to stage
         run: |
           cd $GITHUB_WORKSPACE
+          ls -l ~/.ssh
           rsync -ranv -e 'ssh -p 222' --progress . github@stage.luckydye.de:/srv/apps/$APP_NAME
           ssh -p 222 github@stage.luckydye.de ls -l /srv/apps/$APP_NAME
           ssh -p 222 github@stage.luckydye.de pm2 start $APP_ENTRYPOINT --port $APP_PORT --name $APP_NAME
