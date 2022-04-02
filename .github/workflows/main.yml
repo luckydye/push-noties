@@ -37,7 +37,7 @@ jobs:
           $PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
           $PUBLIC_KEY: ${{ secrets.STAGE_PUBLIC_KEY }}
         run: |
-          mkdir -p ~/.ssh
+          mkdir ~/.ssh
           echo "$PRIVAET_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 -R ~/.ssh
           eval "$(ssh-agent -s)"
