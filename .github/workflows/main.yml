@@ -51,4 +51,4 @@ jobs:
           ls -l
           rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude '.git/*' --exclude '.github/*' . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY/$APP_NAME
-          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST cd $APP_DIRECTORY/$APP_NAME; PORT=$APP_PORT pm2 start $APP_ENTRYPOINT --name $APP_NAME
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "cd $APP_DIRECTORY/$APP_NAME; PORT=$APP_PORT pm2 start $APP_ENTRYPOINT --name $APP_NAME"
