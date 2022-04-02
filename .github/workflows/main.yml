@@ -10,6 +10,7 @@ env:
   STAGE_HOST: stage.luckydye.de
   STAGE_USER: github
   STAGE_SSH_PORT: 222
+  APP_DIRECTORY: /srv/apps
 
 # Controls when the workflow will run
 on:
@@ -42,8 +43,8 @@ jobs:
           echo "${PRIVAET_KEY}" | ssh-add -
           mkdir ~/.ssh
           ssh-keyscan -p $STAGE_SSH_PORT -H $STAGE_HOST >> ~/.ssh/known_hosts
-          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l /srv/apps
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY
           echo "SSH SUCCESS"
-          rsync -ranv -e 'ssh -p 222' --progress . github@stage.luckydye.de:/srv/apps/$APP_NAME
-          ssh -p 222 github@stage.luckydye.de ls -l /srv/apps/$APP_NAME
-          ssh -p 222 github@stage.luckydye.de pm2 start $APP_ENTRYPOINT --port $APP_PORT --name $APP_NAME
+          rsync -rv -e 'ssh -p $STAGE_SSH_PORT' --progress . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY/$APP_NAME
+          ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST pm2 start $APP_ENTRYPOINT --port $APP_PORT --name $APP_NAME
