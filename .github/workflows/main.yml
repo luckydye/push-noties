@@ -35,10 +35,9 @@ jobs:
       - name: setup ssh
         env:
           PRIVAET_KEY: ${{ secrets.STAGE_PRIVATE_KEY }}
-          PUBLIC_KEY: ${{ secrets.STAGE_PUBLIC_KEY }}
         run: |
           mkdir -p ~/.ssh
-          echo $PRIVAET_KEY | tr -d '\r' > ~/.ssh/id_rsa
+          echo "${PRIVAET_KEY}" | ssh-add -
           chmod 700 -R ~/.ssh
           ls -l ~/.ssh          
           eval "$(ssh-agent -s)"          
