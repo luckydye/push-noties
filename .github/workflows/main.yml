@@ -33,9 +33,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      - name: build
+        run: |
+          cd $GITHUB_WORKSPACE
+          npm ci
+          npm run build
 
       # Runs a set of commands using the runners shell
-      - name: build and deploy to stage
+      - name: deploy to stage
         run: |
           which ssh-agent || ( apt install openssh )
           eval $(ssh-agent -s)
@@ -45,10 +51,8 @@ jobs:
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY
           echo "SSH SUCCESS"
           cd $GITHUB_WORKSPACE
-          npm ci
-          npm run build
           ls -l
-          rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude '.git/*' --exclude '.github/*' . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
+          rsync -rv --delete -e "ssh -p $STAGE_SSH_PORT" --exclude '.git' --exclude '.github' . $STAGE_USER@$STAGE_HOST:$APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST ls -l $APP_DIRECTORY/$APP_NAME
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "pm2 delete $APP_NAME || true"
           ssh -p $STAGE_SSH_PORT $STAGE_USER@$STAGE_HOST "cd $APP_DIRECTORY/$APP_NAME; PORT=$APP_PORT pm2 start 'npm start' --name $APP_NAME"
